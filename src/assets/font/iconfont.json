@@ -1,0 +1,30 @@
+{
+  "id": "4163953",
+  "name": "easy-mail",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "邮件系统",
+  "glyphs": [
+    {
+      "icon_id": "10258933",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "7275380",
+      "name": "Message",
+      "font_class": "Message",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "21200509",
+      "name": "iov-call",
+      "font_class": "iov-call",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    }
+  ]
+}
