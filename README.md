@@ -1,4 +1,4 @@
-# EasyMail
+# Template
 
 ## 注意事项
 
