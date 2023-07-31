@@ -12,16 +12,28 @@ const constantRouter = [
         meta: {
             title: "404",
         },
-        component: () => import(/* webpackChunkName: "notFound"*/ "@/components/ResultPage/404.vue"),
+        component: () => import("@/components/ResultPage/404.vue"),
     },
 ];
 
 // 前端路由组件表
 const constantRouterComponents = {
-    dashboard: () => import(/* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"),
-    workOrder: () => import(/* webpackChunkName: "workOrder" */ "@/views/workOrder/index.vue"),
-    CRM: () => import(/* webpackChunkName: "CRM" */ "@/views/CRM/index.vue"),
-    management: () => import(/* webpackChunkName: "management" */ "@/views/management/index.vue"),
+    dashboard: () => import("@/views/dashboard/index.vue"),
+
+    //============= workOrder ====================
+    workOrder: () => import("@/views/workOrder/index.vue"),
+    overview: () => import("@/views/workOrder/statistics/overview.vue"),
+    workload: () => import("@/views/workOrder/statistics/workload.vue"),
+    customSearch: () => import("@/views/workOrder/searching/customSearch.vue"),
+
+    //============== crm =============================
+    CRM: () => import("@/views/CRM/index.vue"),
+    firstConsultCustom: () => import("@/views/CRM/customer/firstConsultCustom.vue"),
+    toBeDistributedCustom: () => import("@/views/CRM/customer/toBeDistributedCustom.vue"),
+
+    //====================== management ============================
+    management: () => import("@/views/management/index.vue"),
+    serviceList: () => import("@/views/management/service/serviceList.vue"),
 };
 
 // 页面根级菜单

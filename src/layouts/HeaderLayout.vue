@@ -1,7 +1,12 @@
 <template>
     <div class="header-layout">
         <div class="header-wrapper">
-            <div class="header-left"></div>
+            <div class="header-left">
+                <div class="collapsed" @click="userStore.collapsed = !userStore.collapsed">
+                    <span class="iconfont" v-if="userStore.collapsed">&#xe7f4;</span>
+                    <span class="iconfont" v-else>&#xe7f3;</span>
+                </div>
+            </div>
             <div class="header-right">
                 <a-popover
                     trigger="click"
@@ -43,19 +48,23 @@
 
 <script setup>
 /**
- * @description
- * @author
+ * @description header布局
+ * @author 林泽明
  * @version 0.0.1
  * @creatDate 2023/07/12
  */
 import { useLoginStore } from "@/store/modules/login";
-const { logoutAction } = useLoginStore();
+import { useUserStore } from "@/store/modules/user";
+
+const loginStore = useLoginStore();
+const userStore = useUserStore();
+
 const isShowMenu1 = ref(false);
 const isShowMenu2 = ref(false);
 
 const workbenchOptions = [
-    { label: "在线客服工作台", key: "online-workbench", icon: "&#xe690;" },
-    { label: "呼叫客服工作台", key: "call-workbench", icon: "&#xe644;" },
+    { label: "在线客服工作台", key: "online-workbench", icon: "&#xe82e;" },
+    { label: "呼叫客服工作台", key: "call-workbench", icon: "&#xe860;" },
 ];
 
 const userOptions = [
@@ -79,7 +88,7 @@ const handleActions = ({ key }) => {
             console.log("在线接入客服测试");
             break;
         default:
-            logoutAction();
+            loginStore.logoutAction();
             break;
     }
     isShowMenu1.value = false;
@@ -103,6 +112,17 @@ const handleActions = ({ key }) => {
     justify-content: space-between;
     flex-wrap: nowrap;
     height: 100%;
+    .header-left {
+        user-select: none;
+        .collapsed {
+            margin-left: 20px;
+            cursor: pointer;
+            .iconfont {
+                font-size: 24px;
+                opacity: 0.8;
+            }
+        }
+    }
     .header-right {
         display: flex;
         align-items: center;

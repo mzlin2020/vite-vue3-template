@@ -7,13 +7,15 @@
             <HeaderLayout />
             <ContentLayout />
         </div>
+        <!-- 移动端弹窗提示 -->
+        <ScreenTip />
     </div>
 </template>
 
 <script setup>
 /**
  * @description 基础布局
- * @author 
+ * @author 林泽明
  * @version 0.0.1
  * @creatDate 2023/07/11
  */
@@ -24,19 +26,16 @@ import ContentLayout from "./ContentLayout.vue";
 
 <style lang="less" scoped>
 .basic-layout {
-    display: flex;
-    width: 100%;
-    height: 100%;
-
-    .layout-left {
-        width: 60px;
+    .layout-left,
+    .layout-right {
         height: 100vh;
-        background: #ebedf0;
+    }
+    .layout-left {
+        float: left;
     }
 
     .layout-right {
-        width: calc(100vw - 60px);
-        height: 100vh;
+        overflow: hidden; /*开启BFC*/
         background: #fff;
         position: relative;
     }

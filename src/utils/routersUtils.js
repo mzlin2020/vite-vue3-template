@@ -10,15 +10,20 @@ import { checkAuthorization } from "./request";
  */
 const generator = (routerMap, parent) => {
     return routerMap.map((item) => {
-        const { title, isMenuShow, icon, key, isBlank } = item.meta || {};
+        const { title, isMenuShow, icon, key, isBlank, isRegister } = item.meta || {};
+
+        // 是否需要注册
+        let component = null;
+        if (isRegister) {
+            component = constantRouterComponents[item.name] || (() => import(`@/views/${item.name}.vue`));
+        }
         const currentRouter = {
             // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/shop
             path: item.path || `${(parent && parent.path) || ""}/${item.name}`,
             // 唯一路由名称
             name: item.name || "",
             // 该路由对应页面的组件 (动态加载)
-            component: constantRouterComponents[item.name] || (() => import(`@/views/${item.name}.vue`)),
-
+            component: component,
             // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
             meta: {
                 key: key,
@@ -26,6 +31,7 @@ const generator = (routerMap, parent) => {
                 icon: icon || undefined,
                 isMenuShow: isMenuShow,
                 isBlank: isBlank,
+                isRegister: isRegister,
                 permission: item.name,
                 layout: item.layout,
             },

@@ -1,14 +1,14 @@
 <template>
     <div class="login">
         <div class="login-left">
-            <div class="logo-text">
+            <!-- <div class="logo-text">
                 <p>欢迎来到</p>
                 <div>logo</div>
-            </div>
+            </div> -->
         </div>
         <div class="login-right">
             <div class="logon-panel">
-                <h3>登录系统</h3>
+                <h3 class="form-title">登录系统</h3>
                 <a-form
                     :model="formState"
                     class="login-form"
@@ -28,7 +28,7 @@
                                     @pressEnter="login"
                                     :maxlength="50"
                                 />
-                                <label> 邮箱/手机号 </label>
+                                <label> 用户名 </label>
                             </div>
                         </div>
                     </a-form-item>
@@ -49,13 +49,30 @@
                         </div>
                     </a-form-item>
 
+                    <a-form-item name="captchaCode">
+                        <div style="display: flex; justify-content: space-between">
+                            <div class="input-wrapper" ref="captchaCodeRef" style="flex: 0.6">
+                                <div class="login-input">
+                                    <a-input
+                                        v-model:value="formState.captchaCode"
+                                        :maxlength="4"
+                                        required
+                                        @focus="handleInputFocus(captchaCodeRef)"
+                                        @blur="handleInputBlur(captchaCodeRef, formState.captchaCode)"
+                                        @pressEnter="login"
+                                    ></a-input>
+                                    <label> 验证码 </label>
+                                </div>
+                            </div>
+                            <div class="captcha-img" style="height: 52px; flex: 0.35; border: 1px solid #aaa">
+                                <img src="" alt="" />
+                            </div>
+                        </div>
+                    </a-form-item>
+
                     <a-form-item style="margin-bottom: 8px">
                         <a-button type="primary" class="login-btn" @click="login" ref="loginBtn">登 录</a-button>
                     </a-form-item>
-
-                    <div class="forget-password">
-                        <a @click="forgetPassword">忘记密码</a>
-                    </div>
                 </a-form>
             </div>
         </div>
@@ -65,7 +82,7 @@
 <script setup>
 /**
  * @description 登录页面
- * @author 
+ * @author 林泽明
  * @version 0.0.1
  * @creatDate 2023/07/10
  */
@@ -79,11 +96,13 @@ const store = useLoginStore();
 const formState = reactive({
     account: "",
     password: "",
+    captchaCode: "",
     remember: true,
 });
 const formRef = ref(null);
 const passwordRef = ref(null);
 const userRef = ref(null);
+const captchaCodeRef = ref(null);
 const loginBtn = ref(null);
 const isFocus = ref(false);
 const formRules = ref(null);
@@ -94,10 +113,6 @@ const login = async () => {
     await formRef.value.validateFields();
     // 校验通过
     store.loginAction();
-};
-
-const forgetPassword = () => {
-    message.info("请联系系统管理员");
 };
 
 /**
@@ -118,6 +133,7 @@ const validate = (name, status) => {
     const lists = {
         account: userRef.value,
         password: passwordRef.value,
+        captchaCode: captchaCodeRef.value,
     };
     status && lists[name].classList.remove("input-wrapper-error");
     !status && lists[name].classList.add("input-wrapper-error");
@@ -138,23 +154,6 @@ const validate = (name, status) => {
         background: url(https://cdn.myshopline.com/sl/admin/shopline-admin-login/202307040958/imgs/login_bg.3b819.jpeg)
             center / cover no-repeat;
 
-        .logo-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 1;
-            margin-top: -3%;
-            transform: translate(-50%, -50%);
-            p {
-                margin-bottom: 24px;
-                color: #fff;
-                font-weight: 300;
-                font-size: 32px;
-                font-family: Helvetica;
-                line-height: 1;
-            }
-        }
-
         &:after {
             position: absolute;
             top: 0;
@@ -170,7 +169,7 @@ const validate = (name, status) => {
     .login-right {
         width: 470px;
         display: flex;
-        margin-top: 160px;
+        padding-top: 160px;
         justify-content: center;
         .logon-panel {
             width: 80%;
@@ -203,6 +202,7 @@ const validate = (name, status) => {
         border: 1px solid #d7dbe7;
         height: 52px;
         border-radius: 4px;
+        background-color: #fff;
 
         .login-input {
             position: relative;
@@ -246,7 +246,7 @@ const validate = (name, status) => {
         }
     }
     .input-wrapper-active {
-        border-color: #2bbdb8;
+        border-color: @hover-color;
         box-shadow: 0 0 0 2px rgba(13, 174, 175, 0.2);
     }
     .input-wrapper-error {
@@ -256,13 +256,6 @@ const validate = (name, status) => {
     :deep(.ant-form-item-explain-error) {
         margin: 8px 0 20px;
     }
-
-    .forget-password {
-        text-align: right;
-        a {
-            font-weight: 600;
-        }
-    }
 }
 
 @media (max-width: 800px) {
@@ -271,6 +264,11 @@ const validate = (name, status) => {
     }
     .login-right {
         width: 100vw !important;
+        background: url(https://cdn.myshopline.com/sl/admin/shopline-admin-login/202307040958/imgs/login_bg.3b819.jpeg)
+            center / cover no-repeat;
+        .form-title {
+            color: #fff !important;
+        }
     }
 }
 </style>

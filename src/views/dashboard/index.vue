@@ -1,5 +1,7 @@
 <template>
-    <div class="dashboard">数据面板</div>
+    <div class="dashboard">
+        <div>数据面板</div>
+    </div>
 </template>
 
 <script setup>

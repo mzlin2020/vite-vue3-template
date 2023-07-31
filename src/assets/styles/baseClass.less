@@ -3,12 +3,19 @@
 // 水平居中
 .flex-center {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 // 单行文本省略
 .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// 多行文本省略
+.ellipsis-more {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

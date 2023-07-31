@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4163953 */
-  src: url('iconfont.woff2?t=1689215828462') format('woff2'),
-       url('iconfont.woff?t=1689215828462') format('woff'),
-       url('iconfont.ttf?t=1689215828462') format('truetype');
+  src: url('iconfont.woff2?t=1689749842798') format('woff2'),
+       url('iconfont.woff?t=1689749842798') format('woff'),
+       url('iconfont.ttf?t=1689749842798') format('truetype');
 }
 
 .iconfont {
@@ -13,15 +13,87 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-user:before {
-  content: "\e607";
+.icon-close:before {
+  content: "\e7fc";
 }
 
-.icon-Message:before {
-  content: "\e690";
+.icon-reload:before {
+  content: "\e788";
 }
 
-.icon-iov-call:before {
-  content: "\e644";
+.icon-indent:before {
+  content: "\e7f3";
+}
+
+.icon-outdent:before {
+  content: "\e7f4";
+}
+
+.icon-catalog-download:before {
+  content: "\e826";
+}
+
+.icon-customer-bussinessman:before {
+  content: "\e828";
+}
+
+.icon-message-comments:before {
+  content: "\e82e";
+}
+
+.icon-order:before {
+  content: "\e833";
+}
+
+.icon-info-fill:before {
+  content: "\e83d";
+}
+
+.icon-help-fill:before {
+  content: "\e83e";
+}
+
+.icon-info:before {
+  content: "\e83f";
+}
+
+.icon-more:before {
+  content: "\e840";
+}
+
+.icon-help:before {
+  content: "\e841";
+}
+
+.icon-remind:before {
+  content: "\e842";
+}
+
+.icon-settings:before {
+  content: "\e844";
+}
+
+.icon-all:before {
+  content: "\e84b";
+}
+
+.icon-customer-service:before {
+  content: "\e851";
+}
+
+.icon-home:before {
+  content: "\e858";
+}
+
+.icon-live:before {
+  content: "\e85c";
+}
+
+.icon-phone:before {
+  content: "\e860";
+}
+
+.icon-security:before {
+  content: "\e869";
 }
 

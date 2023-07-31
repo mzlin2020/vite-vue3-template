@@ -14,7 +14,7 @@ export default defineConfig({
         createStyleImportPlugin({
             resolvers: [AndDesignVueResolve()], //按需导入antdVue样式
             libs: [
-                //解决message等部分组件样式失效bug
+                //解决message等组件样式失效bug
                 {
                     libraryName: "ant-design-vue",
                     esModule: true,

@@ -3,6 +3,7 @@ import { logout } from "@/api/login/login";
 import { cache, generatorAsyncRouter } from "@/utils/index";
 import router from "@/router/index";
 import menusData from "@/router/routerData";
+import { resetAllStore } from "@/store/resetStore";
 
 export const useLoginStore = defineStore("login", {
     state: () => {
@@ -18,7 +19,6 @@ export const useLoginStore = defineStore("login", {
             // 添加动态路由
             const rootRouter = generatorAsyncRouter(menusData);
             router.addRoute(rootRouter);
-
             router.push("/");
         },
 
@@ -28,6 +28,9 @@ export const useLoginStore = defineStore("login", {
             // 清除缓存
             cache.clear();
             cache.clear("session");
+
+            // 重置pinia
+            resetAllStore(this);
 
             router.push({ name: "login" });
         },
